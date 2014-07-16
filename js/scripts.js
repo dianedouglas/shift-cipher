@@ -6,9 +6,13 @@ var shiftCipher = function(shiftAmount, inputPhrase){
   var encodedPhrase = ""; //all encodedChars will be stored here and this will be the final encoded phrase to be returned.
 
   for (var i = 0; i < inputPhrase.length; i++){ //step through input phrase one character at a time.
-    currentChar = inputPhrase.charAt(i);  //store the current character
-    currentCharIndex = alphabetChars.indexOf(currentChar); //store its index in alphabetChars
-    encodedChar = alphabetChars[currentCharIndex + shiftAmount]; //encode the char.
+    if(inputPhrase.charAt(i) === " "){
+      encodedChar = " ";
+    } else {
+      currentChar = inputPhrase.charAt(i);  //store the current character
+      currentCharIndex = alphabetChars.indexOf(currentChar); //store its index in alphabetChars
+      encodedChar = alphabetChars[currentCharIndex + shiftAmount]; //encode the char.
+    }
     encodedPhrase += encodedChar; //add it to the encoded phrase.
   }
 

@@ -11,5 +11,10 @@ describe("shiftCipher", function(){
   it("Takes a two-letter phrase and a shift amount of 1 and outputs the encoded multi-letter phrase.", function(){
     shiftCipher(1, "ab").should.equal("bc");
   });
-
+  it("Takes a multi-word phrase and a shift amount of 0 and outputs the encoded phrase.", function(){
+    shiftCipher(0, "ab cd").should.equal("ab cd");
+  });
+  it("Takes a multi-word phrase and a shift amount of 1 and outputs the encoded phrase.", function(){
+    shiftCipher(1, "ab cd").should.equal("bc de");
+  });
 });
