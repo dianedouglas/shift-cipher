@@ -23,7 +23,13 @@ describe("shiftCipher", function(){
   it("Takes a number as the input phrase and a shift amount of 1 and outputs the encoded number.", function(){
     shiftCipher(1, "3").should.equal("4");
   });
-  it("Takes numbers and characters as the input phrase and a shift amount of 1 and outputs the encoded number.", function(){
+  it("Takes numbers and characters as the 1-word-input phrase and a shift amount of 1 and outputs the encoded number.", function(){
     shiftCipher(1, "3a").should.equal("4b");
+  });
+  it("Takes one word with numbers and one with characters as the input phrase and a shift amount of 1 and outputs the encoded phrase.", function(){
+    shiftCipher(1, "33 aa").should.equal("44 bb");
+  });
+  it("Takes numbers and characters as the input phrase and a shift amount of 1 and outputs the encoded number.", function(){
+    shiftCipher(1, "3a 4b").should.equal("4b 5c");
   });
 });
