@@ -17,4 +17,13 @@ describe("shiftCipher", function(){
   it("Takes a multi-word phrase and a shift amount of 1 and outputs the encoded phrase.", function(){
     shiftCipher(1, "ab cd").should.equal("bc de");
   });
+  it("Takes a number as the input phrase and a shift amount of 0 and outputs the encoded number.", function(){
+    shiftCipher(0, "3").should.equal("3");
+  });
+  it("Takes a number as the input phrase and a shift amount of 1 and outputs the encoded number.", function(){
+    shiftCipher(1, "3").should.equal("4");
+  });
+  it("Takes numbers and characters as the input phrase and a shift amount of 1 and outputs the encoded number.", function(){
+    shiftCipher(1, "3a").should.equal("4b");
+  });
 });
