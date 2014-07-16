@@ -8,4 +8,8 @@ describe("shiftCipher", function(){
   it("Takes a two-letter phrase and a shift amount of 0 and outputs the encoded multi-letter phrase.", function(){
     shiftCipher(0, "ab").should.equal("ab");
   });
+  it("Takes a two-letter phrase and a shift amount of 1 and outputs the encoded multi-letter phrase.", function(){
+    shiftCipher(1, "ab").should.equal("bc");
+  });
+
 });
