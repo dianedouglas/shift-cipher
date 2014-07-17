@@ -5,11 +5,11 @@ var shiftCipher = function(shiftAmount, inputPhrase){
   var encodedChar;  //after the shift has been applied to currentChar, encodedChar is the output.
   var encodedPhrase = ""; //all encodedChars will be stored here and this will be the final encoded phrase to be returned.
 
-  for (var i = 0; i < inputPhrase.length; i++){ 
-    currentChar = inputPhrase.charAt(i); 
+  for (var i = 0; i < inputPhrase.length; i++){
+    currentChar = inputPhrase.charAt(i);
     if(numericalChars.indexOf(currentChar) >= 0){  //if current char is a number...
       //encode char by calling encodeOneCharacter function with shift amount, current char and array it belongs to.
-      encodedChar = encodeOneCharacter(shiftAmount, currentChar, numericalChars);  
+      encodedChar = encodeOneCharacter(shiftAmount, currentChar, numericalChars);
     } else if(alphabetChars.indexOf(currentChar) >=0){  //if it's a letter, do the same with alphabetChars array.
       encodedChar = encodeOneCharacter(shiftAmount, currentChar, alphabetChars);
     } else { //if current character isn't in either array, pass it through unchanged.
@@ -22,30 +22,31 @@ var shiftCipher = function(shiftAmount, inputPhrase){
 }
 
 var encodeOneCharacter = function(shiftAmount, inputChar, searchCharacters){
-  var encodedChar; 
+  var encodedChar;
 
   var currentCharIndex = searchCharacters.indexOf(inputChar); //store input character's index from searchCharacters array (numerical or alphabetical)
+  var intShiftAmount = parseInt(shiftAmount);
+  // if(currentCharIndex === -1){
+  //   alert("Error. Invalid characters.");
+  //   return "Character Error";
+  //   //this should never happen. only happens if the input char is not in the given array. But this function should only be called if the character is in the given array.
+  // } else {
 
-  if(currentCharIndex === -1){
-    alert("Error. Invalid characters.");
-    return "Character Error";
-    //this should never happen. only happens if the input char is not in the given array. But this function should only be called if the character is in the given array. 
-  } else {
-
-    while(currentCharIndex + shiftAmount >= searchCharacters.length){ //while the sum of the current index and shift amount is out of range
+    while(currentCharIndex + intShiftAmount >= searchCharacters.length){ //while the sum of the current index and shift amount is out of range
       //decrement shift amount and increment the current char by 1, looping until shift amount is decremented enough to be in range.
-      shiftAmount--; 
-      if(currentCharIndex < searchCharacters.length-1){ //if the next array index is not out of range...         
+      intShiftAmount--;
+      if(currentCharIndex < searchCharacters.length-1){ //if the next array index is not out of range...
         currentCharIndex++; //increment the current char index by 1
       } else {
         currentCharIndex = 0; //else reset to 0 index (first character in array).
       }
     }
-    encodedChar = searchCharacters[currentCharIndex + shiftAmount]; //get the encoded char by applying the new shift amount to the array.
+    encodedChar = searchCharacters[currentCharIndex + intShiftAmount]; //get the encoded char by applying the new shift amount to the array.
+    alert(inputChar + " " + currentCharIndex + " " + intShiftAmount + " " + encodedChar);
 
     return encodedChar;
 
-  }
+  //}
 }
 
 $(document).ready(function() {
@@ -60,8 +61,8 @@ $(document).ready(function() {
     } else if (shiftAmount < 0){
       $(".result").hide();
       $(".error p").text("No negative numbers allowed.");
-      $(".error").fadeIn();      
-    } else {      
+      $(".error").fadeIn();
+    } else {
       var codedPhrase = shiftCipher(shiftAmount, inPhrase);
       $(".result p").text(codedPhrase);
       $(".error").hide();
