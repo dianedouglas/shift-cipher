@@ -7,14 +7,15 @@ var shiftCipher = function(shiftAmount, inputPhrase){
 
   for (var i = 0; i < inputPhrase.length; i++){ 
     currentChar = inputPhrase.charAt(i); 
-    if(numericalChars.indexOf(currentChar) >= 0){  //if current char is a number
-      encodedChar = encodeOneCharacter(shiftAmount, currentChar, numericalChars);
+    if(numericalChars.indexOf(currentChar) >= 0){  //if current char is a number...
+      //encode char by calling encodeOneCharacter function with shift amount, current char and array it belongs to.
+      encodedChar = encodeOneCharacter(shiftAmount, currentChar, numericalChars);  
     } else if(alphabetChars.indexOf(currentChar) >=0){  //if it's a letter, do the same with alphabetChars array.
       encodedChar = encodeOneCharacter(shiftAmount, currentChar, alphabetChars);
     } else { //if current character isn't in either array, pass it through unchanged.
       encodedChar = currentChar;
     }
-    encodedPhrase += encodedChar; //add it to the encoded phrase.
+    encodedPhrase += encodedChar; //add encoded char it to the encoded phrase.
   }
 
   return encodedPhrase;
@@ -24,15 +25,25 @@ var encodeOneCharacter = function(shiftAmount, inputChar, searchCharacters){
   var encodedChar; 
 
   var currentCharIndex = searchCharacters.indexOf(inputChar); //store input character's index from searchCharacters array (numerical or alphabetical)
-  while(currentCharIndex + shiftAmount >= searchCharacters.length){ //while the sum of the current index and shift amount is out of range
-    shiftAmount--; //decrement shift amount and increment the current char by 1, looping it back to 0 until shift amount is decremented enough to be in range.
-    if(currentCharIndex < searchCharacters.length-1){ //if the next array index is not out of range         
-      currentCharIndex++; //increment the current char index by 1
-    } else {
-      currentCharIndex = 0; //else reset to 0.
-    }
-  }
-  encodedChar = searchCharacters[currentCharIndex + shiftAmount]; //get the encoded char by applying shift amount to array.
 
-  return encodedChar;
+  if(currentCharIndex === -1){
+    alert("Error. Invalid characters.");
+    return "Character Error";
+    //this should never happen. only happens if the input char is not in the given array. But this function should only called if the character is in the given array. 
+  } else {
+
+    while(currentCharIndex + shiftAmount >= searchCharacters.length){ //while the sum of the current index and shift amount is out of range
+      //decrement shift amount and increment the current char by 1, looping until shift amount is decremented enough to be in range.
+      shiftAmount--; 
+      if(currentCharIndex < searchCharacters.length-1){ //if the next array index is not out of range...         
+        currentCharIndex++; //increment the current char index by 1
+      } else {
+        currentCharIndex = 0; //else reset to 0 index (first character in array).
+      }
+    }
+    encodedChar = searchCharacters[currentCharIndex + shiftAmount]; //get the encoded char by applying the new shift amount to the array.
+
+    return encodedChar;
+
+  }
 }
