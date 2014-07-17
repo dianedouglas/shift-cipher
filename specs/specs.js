@@ -42,3 +42,12 @@ describe("shiftCipher", function(){
   	shiftCipher(1, "9").should.equal("0");
   })
 });
+
+describe("encodeOneCharacter", function(){
+it("Takes a character, an array and a shift amount, then outputs the encoded single character.", function(){
+	encodeOneCharacter(1, "z", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]).should.equal("a");	
+})
+it("Takes a character, an array and a shift amount, then outputs the encoded single character.", function(){
+	encodeOneCharacter(1, "9", ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]).should.equal("0");
+})
+})
