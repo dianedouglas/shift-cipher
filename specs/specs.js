@@ -32,4 +32,7 @@ describe("shiftCipher", function(){
   it("Takes numbers and characters as the input phrase and a shift amount of 1 and outputs the encoded number.", function(){
     shiftCipher(1, "3a 4b").should.equal("4b 5c");
   });
+  it("Takes numbers, alphabetical and special characters as the multi-word input phrase and a shift amount of 1, and outputs the encoded phrase with special characters unchanged.", function(){
+  	shiftCipher(1, "3#a 4#b").should.equal("4#b 5#c");
+  })
 });

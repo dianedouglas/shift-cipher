@@ -6,15 +6,15 @@ var shiftCipher = function(shiftAmount, inputPhrase){
   var encodedPhrase = ""; //all encodedChars will be stored here and this will be the final encoded phrase to be returned.
 
   for (var i = 0; i < inputPhrase.length; i++){ 
-      currentChar = inputPhrase.charAt(i); 
-    if(currentChar === " "){ //if current character is a space, store it as the encoded character without changing it.
-      encodedChar = " ";
-    } else if(numericalChars.indexOf(currentChar) >= 0){  //if it's a number
+    currentChar = inputPhrase.charAt(i); 
+    if(numericalChars.indexOf(currentChar) >= 0){  //if current char is a number
       var currentCharIndex = numericalChars.indexOf(currentChar); //store its index from numericalChars array
       encodedChar = numericalChars[currentCharIndex + shiftAmount]; //get the encoded char by applying shift amount to array.
     } else if(alphabetChars.indexOf(currentChar) >=0){  //if it's a letter, do the same with alphabetChars array.
       var currentCharIndex = alphabetChars.indexOf(currentChar); 
       encodedChar = alphabetChars[currentCharIndex + shiftAmount]; 
+    } else { //if current character isn't in either array, pass it through unchanged.
+      encodedChar = currentChar;
     }
     encodedPhrase += encodedChar; //add it to the encoded phrase.
   }
