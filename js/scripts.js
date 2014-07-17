@@ -17,7 +17,6 @@ var shiftCipher = function(shiftAmount, inputPhrase){
     }
     encodedPhrase += encodedChar; //add encoded char it to the encoded phrase.
   }
-
   return encodedPhrase;
 }
 
@@ -26,11 +25,11 @@ var encodeOneCharacter = function(shiftAmount, inputChar, searchCharacters){
 
   var currentCharIndex = searchCharacters.indexOf(inputChar); //store input character's index from searchCharacters array (numerical or alphabetical)
   var intShiftAmount = parseInt(shiftAmount);
-  // if(currentCharIndex === -1){
-  //   alert("Error. Invalid characters.");
-  //   return "Character Error";
-  //   //this should never happen. only happens if the input char is not in the given array. But this function should only be called if the character is in the given array.
-  // } else {
+  if(currentCharIndex === -1){
+    alert("Error. Invalid characters.");
+    return "Character Error";
+    //this should never happen. only happens if the input char is not in the given array. But this function should only be called if the character is in the given array.
+  } else {
 
     while(currentCharIndex + intShiftAmount >= searchCharacters.length){ //while the sum of the current index and shift amount is out of range
       //decrement shift amount and increment the current char by 1, looping until shift amount is decremented enough to be in range.
@@ -42,11 +41,8 @@ var encodeOneCharacter = function(shiftAmount, inputChar, searchCharacters){
       }
     }
     encodedChar = searchCharacters[currentCharIndex + intShiftAmount]; //get the encoded char by applying the new shift amount to the array.
-    alert(inputChar + " " + currentCharIndex + " " + intShiftAmount + " " + encodedChar);
-
     return encodedChar;
-
-  //}
+  }
 }
 
 $(document).ready(function() {
