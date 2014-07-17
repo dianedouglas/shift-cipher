@@ -9,9 +9,25 @@ var shiftCipher = function(shiftAmount, inputPhrase){
     currentChar = inputPhrase.charAt(i); 
     if(numericalChars.indexOf(currentChar) >= 0){  //if current char is a number
       var currentCharIndex = numericalChars.indexOf(currentChar); //store its index from numericalChars array
+      while(currentCharIndex + shiftAmount >= numericalChars.length){ //while the sum of the current index and shift amount is out of range
+        shiftAmount--; //decrement shift amount and increment the current char by 1, looping it back to 0 until shift amount is decremented enough to be in range.
+        if(currentCharIndex < numericalChars.length-1){ //if the next array index is not out of range         
+          currentCharIndex++; //increment the current char index by 1
+        } else {
+          currentCharIndex = 0; //else reset to 0.
+        }
+      }
       encodedChar = numericalChars[currentCharIndex + shiftAmount]; //get the encoded char by applying shift amount to array.
     } else if(alphabetChars.indexOf(currentChar) >=0){  //if it's a letter, do the same with alphabetChars array.
       var currentCharIndex = alphabetChars.indexOf(currentChar); 
+      while(currentCharIndex + shiftAmount >= alphabetChars.length){ //while the sum of the current index and shift amount is out of range
+        shiftAmount--; //decrement shift amount and increment the current char by 1, looping it back to 0 until shift amount is decremented enough to be in range.
+        if(currentCharIndex < alphabetChars.length-1){ //if the next array index is not out of range         
+          currentCharIndex++; //increment the current char index by 1
+        } else {
+          currentCharIndex = 0; //else reset to 0.
+        }
+      }      
       encodedChar = alphabetChars[currentCharIndex + shiftAmount]; 
     } else { //if current character isn't in either array, pass it through unchanged.
       encodedChar = currentChar;

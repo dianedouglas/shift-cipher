@@ -34,5 +34,11 @@ describe("shiftCipher", function(){
   });
   it("Takes numbers, alphabetical and special characters as the multi-word input phrase and a shift amount of 1, and outputs the encoded phrase with special characters unchanged.", function(){
   	shiftCipher(1, "3#a 4#b").should.equal("4#b 5#c");
+  });
+  it("Takes a letter at the end of the alphabet and shifts it by 1 so that it cycles back to the beginning of the alphabet.", function(){
+  	shiftCipher(1, "z").should.equal("a");
+  });
+  it("Takes a number at the end of the list of 9 digits and shifts it by 1 so that it cycles back to the beginning of the alphabet.", function(){
+  	shiftCipher(1, "9").should.equal("0");
   })
 });
