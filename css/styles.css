@@ -1,3 +1,15 @@
 .error, .result {
 	display: none;
 }
+
+.examples {
+	background-color: #D8F6CE;
+	padding: 8px;
+	margin-top: 15px;
+	width: 30%;
+	border: 1px solid black;
+}
+
+body {
+	background-color: #E0F2F7;
+}

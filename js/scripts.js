@@ -29,7 +29,7 @@ var encodeOneCharacter = function(shiftAmount, inputChar, searchCharacters){
   if(currentCharIndex === -1){
     alert("Error. Invalid characters.");
     return "Character Error";
-    //this should never happen. only happens if the input char is not in the given array. But this function should only called if the character is in the given array. 
+    //this should never happen. only happens if the input char is not in the given array. But this function should only be called if the character is in the given array. 
   } else {
 
     while(currentCharIndex + shiftAmount >= searchCharacters.length){ //while the sum of the current index and shift amount is out of range
@@ -47,3 +47,25 @@ var encodeOneCharacter = function(shiftAmount, inputChar, searchCharacters){
 
   }
 }
+
+$(document).ready(function() {
+  $("form#code").submit(function(event) {
+    event.preventDefault();
+    var inPhrase = $("input#input-phrase").val();
+    var shiftAmount = $("input#shift-amount").val();
+    if(inPhrase === ""){
+      $(".result").hide();
+      $(".error p").text("You must enter a phrase.");
+      $(".error").fadeIn();
+    } else if (shiftAmount < 0){
+      $(".result").hide();
+      $(".error p").text("No negative numbers allowed.");
+      $(".error").fadeIn();      
+    } else {      
+      var codedPhrase = shiftCipher(shiftAmount, inPhrase);
+      $(".result p").text(codedPhrase);
+      $(".error").hide();
+      $(".result").fadeIn();
+    }
+  });
+});
